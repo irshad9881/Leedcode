@@ -1,0 +1,40 @@
+// class Solution {
+// public:
+//     vector<int> numberOfLines(vector<int>& widths, string s) {
+//        int line=1,pix=0; //at least ine line to hogi kunki stirn diya hai and if block me jaker add ker rhe hai 
+//        for(int i=0;i<s.length();i++)//to line bhi to ho isle line=1 se start kiya
+//        {
+//            if(pix+widths[s[i]-'a']<=100)//s[i] sting ke everry letter ko find out kiya uski value ko widths array me
+//            {                          //jakar uke pixcel ko add kiya until <=100 
+//                pix+=widths[s[i]-'a'];
+//            } 
+//            else {
+//                pix=0 ; //next line ke pixecl ko add karne ke liye jo phale pixecl the unke 0 kar diya
+//                line++; //line next hogi islie line ko increase kardiya 
+//                pix+=widths[s[i]-'a']; //again new line  ke pikel ko yanhi per kunki line yensi se start kar diya 
+//            }
+//        }
+//        return {line,pix}; //last me jo pixcel humare pass honge bahi humara ans honge 
+//     }
+// };
+
+class Solution {
+public:
+    vector<int> numberOfLines(vector<int>& widths, string s) {
+        int line=1,pix=0,sum=0;
+        unordered_map<char,int> m;char ch='a';
+        for(int i=0;i<widths.size();i++){
+            m[ch]=widths[i];
+            ch++;
+        }
+        for(int i=0;i<s.size();i++){
+            pix+=m[s[i]];
+            if(pix>100){
+                line++;
+                pix=0;
+                i--;//deyana se deken eh if bloack me hai to if block enhai tab chale ga jab words>100 honhe
+            }   //  jab ek step age panhche ke to 100 se pixel jeda honhe to bah to 0 kar diya but hum 1 step aage
+        }    //pahunch ghe to ek step peeche aane keliye i-- 
+        return {line,pix};
+    }
+};
