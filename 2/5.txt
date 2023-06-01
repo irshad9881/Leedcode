@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+    //     int maxprices=0;//brute force approch Tc=>o(n^2)  sp=>o(1)//using 1  //varible
+    //     for(int i=0;i<prices.size();i++)
+    //     {
+    //         for(int j=i+1;j<prices.size();j++)
+    //         {
+    //             if(prices[j]-prices[i]>maxprices)
+    //             {
+    //                 maxprices=prices[j]-prices[i];
+    //             }
+    //         }
+    //     }
+    //     return maxprices;
+    // }
+    int minprice=INT_MAX;
+    int  maxprofit=0;
+    for(int i=0;i<prices.size();i++)
+    {
+        if(prices[i]<minprice)
+        {
+            minprice=prices[i];
+        }
+        else if(prices[i]-minprice>maxprofit)
+        {
+         maxprofit=prices[i]-minprice;
+        }
+    }
+    return maxprofit;
+    }
+};
